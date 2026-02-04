@@ -5,6 +5,7 @@ import com.training.iVoyant.exceptions.StudentNotFoundException;
 import com.training.iVoyant.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -22,8 +23,9 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
-    public void addStudent(Student student) {
+    public Student addStudent(Student student) {
         repository.save(student);
+        return student;
     }
 
 
@@ -42,5 +44,15 @@ public class StudentServiceImpl implements StudentService {
         return repository.searchByEmail(email);
     }
 
+    @Override
+    public void deleteStudent(Long id) {
+        Student student = repository.getStudentById(id);
+        repository.delete(student);
+    }
+
+    @Override
+    public Student patchStudent(Long id, Map<String, Object> updates) {
+        return null;
+    }
 
 }

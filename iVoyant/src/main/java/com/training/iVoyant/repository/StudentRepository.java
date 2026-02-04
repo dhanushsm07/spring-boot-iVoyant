@@ -23,4 +23,5 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
             nativeQuery = true)
     List<Student> searchByEmail(@Param("email") String email);
 
+    Student getStudentById(Long id);
 }
